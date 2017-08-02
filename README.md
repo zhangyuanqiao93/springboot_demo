@@ -1,6 +1,7 @@
 # 个人搭建的第一个Spring Boot项目Demo
 
-###我的第一个spring boot Demo
+##我的第一个spring boot Demo
+
 附上Spring Boot 的官方网址[Spring Boot](http://projects.spring.io/spring-boot/)
 以及慕课网的教程视频地址[慕课网](http://www.imooc.com)
 
