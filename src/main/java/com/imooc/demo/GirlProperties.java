@@ -3,8 +3,8 @@ package com.imooc.demo;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
-@Component
-@ConfigurationProperties(prefix = "girl")
+@Component  //注入一个Bean
+@ConfigurationProperties(prefix = "girl")     //项目配置.yml文件的girl
 public class GirlProperties {
 
     private String cupSize;

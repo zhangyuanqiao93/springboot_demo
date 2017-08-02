@@ -8,6 +8,7 @@ import javax.persistence.Id;
  * Create By Bridge on 2017/8/02
  */
 
+//Entity 在数据库中对应着一个表
 @Entity
 public class GirlEntity {
 
