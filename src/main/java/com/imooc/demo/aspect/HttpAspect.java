@@ -33,11 +33,13 @@ public class HttpAspect {
     public void doBefor(){
 
         System.out.println("首次被拦截！");
+        logger.info("information 123");
     }
 
     @After("log()")
     public void doAfter(){
         System.out.println("再次被拦截！");
+        logger.info("information 456");
     }
 
 }
