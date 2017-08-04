@@ -26,6 +26,7 @@ public class GirlController {
      */
     @GetMapping(value = "/girls")
     public List<GirlEntity> girlEntityList(){
+        System.out.println("girlEntityList");
         return girlRepository.findAll();
     }
 
@@ -73,6 +74,7 @@ public class GirlController {
      */
     @GetMapping(value = "girls/{id}")
     public GirlEntity girlFindOne(@PathVariable("id") Integer id){
+        System.out.println("girlFindOne");
         return girlRepository.findOne(id);
     }
 
@@ -87,6 +89,7 @@ public class GirlController {
     public GirlEntity girlUpdate(@PathVariable("id") Integer id,
                            @RequestParam("cupSize") String cupSize,
                            @RequestParam("age") Integer age){
+        System.out.println("girlUpdate");
         GirlEntity girl = new GirlEntity();
         girl.setId(id);
         girl.setAge(age);
@@ -104,10 +107,10 @@ public class GirlController {
     public void girlDelete(@PathVariable("id") Integer id){
         girlRepository.delete(id);
     }
-
     //通过年龄来查询
     @GetMapping(value = "girls/age/{age}")
     public List<GirlEntity> girlListByAge(@PathVariable("age") Integer age){
+        System.out.println("girlUpdate");
 
         return  girlRepository.findByAge(age);
     }
@@ -115,6 +118,7 @@ public class GirlController {
     @PostMapping(value = "/girls/two")
     @Transactional  //事物处理
     public void girlTwo(){
+        System.out.println("girlTwo");
         girlService.insertTwo();
     }
 
