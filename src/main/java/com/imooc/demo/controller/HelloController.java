@@ -1,5 +1,6 @@
-package com.imooc.demo;
+package com.imooc.demo.controller;
 
+import com.imooc.demo.properties.GirlProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

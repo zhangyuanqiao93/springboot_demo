@@ -1,5 +1,7 @@
-package com.imooc.demo;
+package com.imooc.demo.service;
 
+import com.imooc.demo.entity.GirlEntity;
+import com.imooc.demo.repository.GirlRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

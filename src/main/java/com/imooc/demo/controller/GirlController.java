@@ -1,5 +1,8 @@
-package com.imooc.demo;
+package com.imooc.demo.controller;
 
+import com.imooc.demo.entity.GirlEntity;
+import com.imooc.demo.repository.GirlRepository;
+import com.imooc.demo.service.GirlService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -92,4 +95,6 @@ public class GirlController {
     public void girlTwo(){
         girlService.insertTwo();
     }
+
+
 }

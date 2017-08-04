@@ -1,4 +1,4 @@
-package com.imooc.demo;
+package com.imooc.demo.properties;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
