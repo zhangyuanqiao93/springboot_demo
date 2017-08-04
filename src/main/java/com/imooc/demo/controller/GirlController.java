@@ -4,9 +4,11 @@ import com.imooc.demo.entity.GirlEntity;
 import com.imooc.demo.repository.GirlRepository;
 import com.imooc.demo.service.GirlService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.Transactional;
+import javax.validation.Valid;
 import java.util.List;
 
 
@@ -33,8 +35,8 @@ public class GirlController {
      * @param age
      * @return
      */
-    @PostMapping(value = "/girls") //post方法传递参数用注解:@RequestParam
-    public GirlEntity girlAdd(@RequestParam("cupSize") String cupSize,
+    //@PostMapping(value = "/girls") //post方法传递参数用注解:@RequestParam
+  /*  public GirlEntity girlAdd(@RequestParam("cupSize") String cupSize,
                           @RequestParam("age") Integer age){
         GirlEntity girl = new GirlEntity(); // 添加一个Girl
 
@@ -42,8 +44,28 @@ public class GirlController {
         girl.setAge(age);
 
         return girlRepository.save(girl);
-    }
+    }*/
 
+
+    /**
+     * 添加一个女生
+     * @param girl
+     * @return
+     */
+    @PostMapping(value = "/girls") //post方法传递参数用注解:@RequestParam
+    public GirlEntity girlAdd2(@Valid GirlEntity girl, BindingResult bindingResult){
+        //@Valid 注解，表单验证(17/8/4)
+        if (bindingResult.hasErrors()){
+
+            System.out.println(bindingResult.getFieldError().getDefaultMessage());
+            return null;
+        }
+        //GirlEntity girl = new GirlEntity(); // 添加一个Girl
+        girl.setCupSize(girl.getCupSize());
+        girl.setAge(girl.getAge());
+
+        return girlRepository.save(girl);
+    }
     /**
      * function：根据id查询一个girl
      * @param id

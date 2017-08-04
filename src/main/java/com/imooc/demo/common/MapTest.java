@@ -5,6 +5,10 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+/**
+ * Create By Bridge on 2017/8/4
+ * function: Map ,List,Iterator demo
+ */
 public class MapTest {
 
     public static List<String> list = new ArrayList<>();
