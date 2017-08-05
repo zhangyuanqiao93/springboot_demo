@@ -59,6 +59,12 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-aop</artifactId>
 		</dependency>
+		<!--自动生成Mybatis查询等代码插件-->
+		<dependency>
+			<groupId>org.mybatis.generator</groupId>
+			<artifactId>mybatis-generator</artifactId>
+			<version>1.3.5</version>
+		</dependency>
 	</dependencies>
 
 	<build>

@@ -59,4 +59,15 @@ public class GirlService {
         }
 //        return 0;
     }
+
+    /**
+     *  @Dtae： 2017/8/5
+     *  @function 项目最后的单元测试（一个优秀工程师的基本素养）
+     *  通过id查询你女生的信息
+     * @param id
+     * @return
+     */
+    public GirlEntity findOne(Integer id){
+        return girlRepository.findOne(id);
+    }
 }
