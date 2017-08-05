@@ -3,6 +3,9 @@ package com.imooc.demo.controller;
 import com.imooc.demo.entity.GirlEntity;
 import com.imooc.demo.repository.GirlRepository;
 import com.imooc.demo.service.GirlService;
+import com.imooc.demo.utils.ResultUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +18,9 @@ import java.util.List;
 @RestController
 public class GirlController {
 
+    //spring 自带的一个日志框架,位于*****"org.slf4j.Logger"*****包中
+    public static Logger logger = LoggerFactory.getLogger(GirlController.class);
+
     @Autowired
     private GirlRepository girlRepository;
     @Autowired
@@ -26,7 +32,9 @@ public class GirlController {
      */
     @GetMapping(value = "/girls")
     public List<GirlEntity> girlEntityList(){
-        System.out.println("girlEntityList");
+
+//        System.out.println("girlEntityList");
+        logger.info("girlEntityList");
         return girlRepository.findAll();
     }
 
@@ -54,18 +62,26 @@ public class GirlController {
      * @return
      */
     @PostMapping(value = "/girls") //post方法传递参数用注解:@RequestParam
-    public GirlEntity girlAdd2(@Valid GirlEntity girl, BindingResult bindingResult){
-        //@Valid 注解，表单验证(17/8/4)
+    public Object girlAdd2(@Valid GirlEntity girl, BindingResult bindingResult){
+        /**
+         *  @Valid 注解，表单验证(17/8/4)
+         */
+
+//        ResultEntity result = new ResultEntity();
         if (bindingResult.hasErrors()){
-
-            System.out.println(bindingResult.getFieldError().getDefaultMessage());
-            return null;
+//            result.setCoede(1); //不成功返回错误信息
+//            result.setMsg(bindingResult.getFieldError().getDefaultMessage());
+//            logger.error(bindingResult.getFieldError().getDefaultMessage());
+//            return null;
+            return ResultUtil.error(1,bindingResult.getFieldError().getDefaultMessage());
+//            System.out.println(bindingResult.getFieldError().getDefaultMessage());
+        }else {
+            //GirlEntity girl = new GirlEntity(); // 添加一个Girl
+//            result.setCoede(0);
+//            result.setMsg("成功");
+//            result.setData(girlRepository.save(girl));
+            return ResultUtil.success(girlRepository.save(girl));
         }
-        //GirlEntity girl = new GirlEntity(); // 添加一个Girl
-        girl.setCupSize(girl.getCupSize());
-        girl.setAge(girl.getAge());
-
-        return girlRepository.save(girl);
     }
     /**
      * function：根据id查询一个girl
@@ -74,7 +90,8 @@ public class GirlController {
      */
     @GetMapping(value = "girls/{id}")
     public GirlEntity girlFindOne(@PathVariable("id") Integer id){
-        System.out.println("girlFindOne");
+//        System.out.println("girlFindOne");
+        logger.info("girlFindOne");
         return girlRepository.findOne(id);
     }
 
@@ -89,7 +106,8 @@ public class GirlController {
     public GirlEntity girlUpdate(@PathVariable("id") Integer id,
                            @RequestParam("cupSize") String cupSize,
                            @RequestParam("age") Integer age){
-        System.out.println("girlUpdate");
+//        System.out.println("girlUpdate");
+        logger.info("girlUpdate");
         GirlEntity girl = new GirlEntity();
         girl.setId(id);
         girl.setAge(age);
@@ -110,16 +128,29 @@ public class GirlController {
     //通过年龄来查询
     @GetMapping(value = "girls/age/{age}")
     public List<GirlEntity> girlListByAge(@PathVariable("age") Integer age){
-        System.out.println("girlUpdate");
-
+//        System.out.println("girlUpdate");
+        logger.info("girlUpdate");
         return  girlRepository.findByAge(age);
     }
 
     @PostMapping(value = "/girls/two")
     @Transactional  //事物处理
     public void girlTwo(){
-        System.out.println("girlTwo");
+//        System.out.println("girlTwo");
+        logger.info("girlTwo");
         girlService.insertTwo();
+    }
+
+    /**
+     * 需求：判断女生年龄，<10岁，应该在上小学
+     * 10-16在上初中
+     */
+
+    @GetMapping(value = "/girls/getAge/{id}")
+    public void getAge(@PathVariable("id") Integer id) throws Exception {
+
+        girlService.getAge(id);
+
     }
 
 
