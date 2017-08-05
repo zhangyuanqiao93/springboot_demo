@@ -1,6 +1,7 @@
 package com.imooc.demo.service;
 
 import com.imooc.demo.entity.GirlEntity;
+import com.imooc.demo.enums.ResultEnum;
 import com.imooc.demo.exception.GirlException;
 import com.imooc.demo.repository.GirlRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,11 +50,11 @@ public class GirlService {
         //if else 可以看成表单的验证
         if (age < 23){
         //返回可能在上小学
-            throw new GirlException(99,"可能在上大学");
+            throw new GirlException(ResultEnum.COLLEGE);
 //            return 1;
         }else if (age >24 && age<28 ){
             //返回可能在上初中
-            throw new GirlException(101,"可能在上硕士研究生");
+            throw new GirlException(ResultEnum.GRADUATE);
 //            return 2;
         }
 //        return 0;

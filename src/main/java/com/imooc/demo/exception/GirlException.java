@@ -1,5 +1,7 @@
 package com.imooc.demo.exception;
 
+import com.imooc.demo.enums.ResultEnum;
+
 /**
  * Create By Bridge On 2017/8/5
  * 统一异常处理，以及事务回滚
@@ -9,9 +11,9 @@ public class GirlException extends RuntimeException {
 
     private Integer code;
 
-    public GirlException(Integer code,String message) {
-        super(message); //父类的构造方法本身就可以传入一个message
-        this.code = code;
+    public GirlException(ResultEnum resultEnum) {
+        super(resultEnum.getMsg()); //父类的构造方法本身就可以传入一个message
+        this.code = resultEnum.getCode();
     }
 
     public Integer getCode() {
