@@ -33,6 +33,11 @@ public class GirlControllerTest {
                 //.andExpect(MockMvcResultMatchers.content().string("200"));
     }
 
+    @Test
+    public void girlTwo() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.post("/girls/two"))
+                .andExpect(MockMvcResultMatchers.status().isOk());
 
+    }
 
 }
