@@ -26,7 +26,7 @@ public class GirlEntity {
     @Min(value = 18,message = "未成年少女禁止入内")
     private Integer age;
 
-    @NotNull(message = "金額必填！")
+    @NotNull(message = "金额必填！")
     private Double money;
 
     public Double getMoney() {
