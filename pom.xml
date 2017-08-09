@@ -84,9 +84,8 @@
 
 		<!--引擎模板依赖：从 SpringBoot 1.4 开始，暂时只支持 FreeMaker 引擎模板发送邮件-->
 		<dependency>
-			<groupId>org.springfragework.boot</groupId>
-			<artifactId>freemarker</artifactId>
-			<!--<scope></scope>-->
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-freemarker</artifactId>
 		</dependency>
 	</dependencies>
 

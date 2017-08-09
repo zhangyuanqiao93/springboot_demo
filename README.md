@@ -52,3 +52,7 @@ datasource:
 
 2.MarkDown 学习入门指南[简书——MarkDown入门指南](http://www.jianshu.com/p/1e402922ee32/)    ，[Markdown 语法说明 (简体中文版)](http://www.appinn.com/markdown/)   
     
+    
+###  java mail的坑
+
+javax.mail.AuthenticationFailedException: 550 User has no permission    

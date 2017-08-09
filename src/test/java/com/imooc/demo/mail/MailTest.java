@@ -1,6 +1,7 @@
 package com.imooc.demo.mail;
 
 
+import freemarker.template.TemplateException;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -14,10 +15,15 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.ui.freemarker.FreeMarkerTemplateUtils;
+import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import java.io.File;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 
 /**
@@ -144,5 +150,40 @@ public class MailTest {
         //
         logger.info("success： 发送带静态资源的邮件成功。");
         mailSender.send(message);
+    }
+
+    /**
+     *  java mail 发送
+     */
+
+    @Autowired
+    private FreeMarkerConfigurer configurer;  //自动注入
+
+    @Test
+    public void sendTemplateMail() throws IOException {
+        MimeMessage mimeMessage = null;
+
+        mimeMessage = mailSender.createMimeMessage();
+
+        try {
+            MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage,true);
+            mimeMessageHelper.setFrom(sender);
+            mimeMessageHelper.setTo(sender);
+            mimeMessageHelper.setSubject("邮件主题：邮件模板。");
+//            mimeMessageHelper.setText("");
+
+            Map<String,Object> map = new HashMap<>();
+
+            map.put("username","Bridge");
+            //修改 application.properties 文件中的读取路径
+            //读取HTML模板
+            freemarker.template.Template template = configurer.getConfiguration().getTemplate("mail.html");
+
+            String html = FreeMarkerTemplateUtils.processTemplateIntoString(template, map);
+            mimeMessageHelper.setText(html,true);
+        } catch (MessagingException | TemplateException e) {
+            e.printStackTrace();
+        }
+        mailSender.send(mimeMessage);
     }
 }
