@@ -11,3 +11,11 @@ spring:
     hibernate:
       ddl-auto: validate
     show-sql: true
+  mail:
+    host: smtp.163.com
+    username: 17761276235@163.com
+    password: Qiao19930726
+    properties: true
+    default-encoding: utf-8
+
+# qq:spring.mail.host=smtp.qq.com spring.mail.password=QQ邮箱授权码

@@ -1,4 +1,4 @@
-package com.imooc.demo;
+package com.imooc.demo.service;
 
 import com.imooc.demo.entity.GirlEntity;
 import com.imooc.demo.service.GirlService;
@@ -17,7 +17,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class) //表示将在项目中进行run
 @SpringBootTest //启动整个Spring Boot工程
-public class GirlServiceTest {
+public class GirlServiceTest2 {
     @Autowired
     private GirlService girlService;
 
