@@ -1,16 +1,23 @@
 spring:
   profiles:
     active: pro
+
+
+# 数据库连接配置
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://127.0.0.1:3306/dbgirl?characterEncoding=utf8&useSSL=false
 #    useUnicode=true&characterEncoding=utf-8&useSSL=false
     username: root
     password: 123456
+
+# jpa配置
   jpa:
     hibernate:
       ddl-auto: validate
     show-sql: true
+
+# mail 配置
   mail:
     host: smtp.163.com
     username: 17761276235@163.com
@@ -19,5 +26,11 @@ spring:
     default-encoding: utf-8
     port: 25
 
+# Mybatis 配置
+mybatis:
+  type-aliases-package: com.imooc.demo.entity
+  mapper-locations: clathpath:mapper/*.xml
+
 
 # qq:spring.mail.host=smtp.qq.com spring.mail.password=QQ邮箱授权码
+

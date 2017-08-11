@@ -27,6 +27,7 @@
 	</properties>
 
 	<!--Web项目启动必须要有的-->
+	<!--自动添加Tomcat以及Spring MVC 的依赖，Spring Boot会对Tomcat以及Spring MVC进行自动配置-->
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -59,12 +60,19 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-aop</artifactId>
 		</dependency>
-		<!--自动生成Mybatis查询等代码插件-->
+
+		<!--Mybatis-->
 		<dependency>
-			<groupId>org.mybatis.generator</groupId>
-			<artifactId>mybatis-generator</artifactId>
-			<version>1.3.5</version>
+			<groupId>org.mybatis.spring.boot</groupId>
+			<artifactId>mybatis-spring-boot-starter</artifactId>
+			<version>1.3.0</version>
 		</dependency>
+		<!--自动生成Mybatis查询等代码插件-->
+		<!--<dependency>-->
+			<!--<groupId>org.mybatis.generator</groupId>-->
+			<!--<artifactId>mybatis-generator</artifactId>-->
+			<!--<version>1.3.5</version>-->
+		<!--</dependency>-->
 		<!--Swagger2依赖-->
 		<dependency>
 			<groupId>io.springfox</groupId>
@@ -87,6 +95,12 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-freemarker</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>druid</artifactId>
+			<version>1.1.0</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
@@ -98,6 +112,5 @@
 			</plugin>
 		</plugins>
 	</build>
-
 
 </project>
