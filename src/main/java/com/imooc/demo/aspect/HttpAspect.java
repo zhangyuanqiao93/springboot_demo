@@ -3,6 +3,7 @@ package com.imooc.demo.aspect;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.*;
+import org.aspectj.lang.reflect.MethodSignature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -10,6 +11,7 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import java.lang.reflect.Method;
 
 
 /**
@@ -17,8 +19,8 @@ import javax.servlet.http.HttpServletRequest;
  * Create By Bridge on 2017/8/4
  * function: AOP统一处理日志（AOP：面向切面编程）
  */
-@Aspect
-@Component //引入到Spring 容器中
+@Aspect  //面向切面编程，声明是一个切面
+@Component //引入到Spring 容器中;让此切面成为Spring 中管理的Bean
 public class HttpAspect {
 
     //spring 自带的一个日志框架,位于*****"org.slf4j.Logger"*****包中
@@ -26,7 +28,7 @@ public class HttpAspect {
 
     //创建一个公共方法public void log(){}
 
-    @Pointcut("execution(public * com.imooc.demo.controller.GirlController.*(..))")
+    @Pointcut("execution(public * com.imooc.demo.controller.GirlController.*(..))") //声明切点
     public void log(){
 
     }
@@ -55,10 +57,27 @@ public class HttpAspect {
 
     }
 
-    @After("log()")
+    @After("log()")  //使用@After声明一个建言，并使用@PointCut定义的切点
     public void doAfter(){
         System.out.println("再次被拦截！");
         logger.info("information 456");
+    }
+
+    /**
+     * @Authoe: Bridge
+     * @Decription:  编写面向切面编程
+     * @Data:   2017/8/13
+     */
+    @After("log()")
+    public void after(JoinPoint joinPoint){
+        MethodSignature signature = (MethodSignature) joinPoint.getSignature();
+        Method method =  signature.getMethod();
+        String name = method.getName();
+        logger.info(name);
+
+
+//        Action action = method.getAnnotation(Action.class);
+
     }
 
     @AfterReturning(returning = "object" ,pointcut = "log()")

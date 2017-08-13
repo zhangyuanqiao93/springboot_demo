@@ -7,6 +7,8 @@ import com.imooc.demo.repository.GirlRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.xml.ws.Action;
+
 
 /**
  * service 层处理业务逻辑
@@ -14,6 +16,9 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class GirlService {
+
+    @Action(input = "注解式编程")
+    public void add(){}
 
     @Autowired
     GirlRepository girlRepository;
