@@ -64,10 +64,11 @@ public class HttpAspect {
     }
 
     /**
-     * @Authoe: Bridge
+     * @Author: Bridge
      * @Decription:  编写面向切面编程
      * @Data:   2017/8/13
      */
+
     @After("log()")
     public void after(JoinPoint joinPoint){
         MethodSignature signature = (MethodSignature) joinPoint.getSignature();
