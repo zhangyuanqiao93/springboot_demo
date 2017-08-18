@@ -16,4 +16,10 @@ public interface StudentDAO {
      * @return 所有学生
      */
     public List<StudentEntity> query();
+
+    /**
+     * 添加一个学生
+     * @param student 待添加的学生
+     */
+    public void save(StudentEntity student);
 }

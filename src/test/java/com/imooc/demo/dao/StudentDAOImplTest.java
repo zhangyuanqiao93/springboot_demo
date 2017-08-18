@@ -12,7 +12,7 @@ import java.util.List;
             */
     public class StudentDAOImplTest {
         @Test
-        public void query() throws Exception {
+        public void queryTest() throws Exception {
             StudentDAO studentDAO = new StudentDAOImpl();
             List<StudentEntity> students = studentDAO.query();
             for (StudentEntity student : students){
@@ -21,5 +21,19 @@ import java.util.List;
                         ","+ "age: " + student.getAge());
             }
         }
+
+    /**
+     * save 方法测试
+     * @throws Exception
+     */
+    @Test
+    public void saveTest(){
+        StudentDAO studentDAO = new StudentDAOImpl();
+        StudentEntity student = new StudentEntity();
+        student.setName("saveTest");
+        student.setAge(25);
+        studentDAO.save(student);
+    }
+
 
 }

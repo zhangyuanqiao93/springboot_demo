@@ -4,6 +4,7 @@ import com.imooc.demo.entity.StudentEntity;
 import com.imooc.demo.utils.JDBCUtil;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -22,14 +23,14 @@ public class StudentDAOImpl implements StudentDAO{
 
         List<StudentEntity> students = new ArrayList<>();
         Connection conn = null;
-//        PreparedStatement preparedStatement = null;
+        PreparedStatement preparedStatement = null;
         Statement statement = null;
         ResultSet resultSet = null;
         String  sql = "SELECT  id,name,age FROM student";
         try {
             conn = JDBCUtil.getConnection();
-             statement = conn.createStatement();
-            resultSet = statement.executeQuery(sql);//执行一个查询
+            preparedStatement = conn.prepareStatement(sql);
+            resultSet = preparedStatement.executeQuery();//执行一个查询
 
             StudentEntity student = null;
             while(resultSet.next()){
@@ -51,10 +52,32 @@ public class StudentDAOImpl implements StudentDAO{
             e.printStackTrace();
         }finally {
             //关闭连接
-            JDBCUtil.release(resultSet,statement,conn);
+            JDBCUtil.release(resultSet,preparedStatement,conn);
         }
 
         return students;
 
+    }
+
+    @Override
+    public void save(StudentEntity student) {
+        Connection conn = null;
+        PreparedStatement preparedStatement = null;
+//        Statement statement = null;
+        ResultSet resultSet = null;
+        String  sql = "insert into student(name,age) values(?,?) ";
+        try {
+            conn = JDBCUtil.getConnection();
+            preparedStatement = conn.prepareStatement(sql);
+            preparedStatement.setString(1,student.getName());
+            preparedStatement.setInt(2,student.getAge());
+            preparedStatement.executeUpdate();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally {
+            //关闭连接
+            JDBCUtil.release(resultSet,preparedStatement,conn);
+        }
     }
 }
