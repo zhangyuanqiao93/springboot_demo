@@ -22,8 +22,9 @@ public class EmployeeEntity {
 
     private Integer age;
 
-    @GeneratedValue //id自增
+
     @Id//主键是id
+    @GeneratedValue //id自增
     public Integer getId() {
         return id;
     }

@@ -18,13 +18,16 @@
         <!--注意bean文件配置时的正确性-->
         <property name="url" value="jdbc:mysql://127.0.0.1:3306/spring_data"/>
     </bean>
-    <!--2.配置EntityManagerFactory-->
+
+
+    <!--2 配置EntityManagerFactory-->
     <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
         <property name="dataSource" ref="dataSource"/>
         <property name="jpaVendorAdapter">
-            <bean id="dataSource" class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"/>
+            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"/>
         </property>
-        <property name="packagesToScan" value="com.imooc"/>
+        <property name="packagesToScan" value="com.imooc.demo"/>
+
         <property name="jpaProperties">
             <props>
                 <prop key="hibernate.ejb.naming_strategy">org.hibernate.cfg.ImprovedNamingStrategy</prop>
@@ -34,21 +37,22 @@
                 <prop key="hibernate.hbm2ddl.auto">update</prop>
             </props>
         </property>
+
     </bean>
 
     <!--3.配置事务管理器-->
     <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
         <property name="entityManagerFactory" ref="entityManagerFactory"/>
     </bean>
-
-    <!--4.支持注解的事务-->
+    <!--4. 配置支持注解的事务-->
     <tx:annotation-driven transaction-manager="transactionManager"/>
 
-    <!--配置spring data-->
-
-    <jpa:repositories base-package="com.imooc" entity-manager-factory-ref="entityManagerFactory"/>
-    
-    <context:component-scan base-package="com.imooc.demo"/>
-
+     <!--5. 配置spring data-->
+    <jpa:repositories base-package="com.imooc.demo" entity-manager-factory-ref="entityManagerFactory"/>
+    <!--在配置bean文件时，加了下面一句，测试一直不能通过测试，经过反复的老师的视频，听到一句，保险起见加上，
+    后来经过一天的各种搜索引擎的搜索，查找，无果，最后把这个注释掉，测试OK。这个坑，慎入。-->
+    <!--经过查阅相关的技术文档，首先了解到这个bean标签的作用是： 扫描指定的包中的类上的注解。
+    可能是目前没有添加注解的原因，但是其实上一个项目已经添加了很多的注解。-->
+    <!--<context:component-scan base-package="com.imooc.demo"/>-->
 
 </beans>

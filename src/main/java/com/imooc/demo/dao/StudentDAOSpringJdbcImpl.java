@@ -44,7 +44,7 @@ public class StudentDAOSpringJdbcImpl implements StudentDAO{
     public void save(StudentEntity student) {
         String  sql = "insert into student(name,age) values(?,?) ";
 //        jdbcTemplate.update(sql, student.getName(),student.getAge());
-        jdbcTemplate.update(sql,new Object[]{student.getName(),student.getAge()});
+        jdbcTemplate.update(sql, student.getName(),student.getAge());
     }
 
 

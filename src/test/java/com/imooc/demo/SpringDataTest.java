@@ -20,7 +20,6 @@ public class SpringDataTest {
     public void setContext(){
         //将配置文件的名称配置进来。
         context = new ClassPathXmlApplicationContext("beans-new.xml");
-        //studentDAO = (StudentDAO) context.getBean("studentDAO");
         System.out.println("setContext");
     }
     @After
