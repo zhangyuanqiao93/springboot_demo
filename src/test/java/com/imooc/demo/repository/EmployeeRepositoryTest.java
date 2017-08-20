@@ -110,5 +110,17 @@ import java.util.List;
                 ",age: " + employee.getAge());
     }
 
+    //queryParam1
+    @Test
+    public void  testQueryParam1() {
+        List<EmployeeEntity> employeeEntities = employeeRepository.queryParam1("xx",23);
+        for (EmployeeEntity employee : employeeEntities) {
+            System.out.println("id: " + employee.getId() +
+                    ",name " + employee.getName() +
+                    ",age: " + employee.getAge());
+        }
+    }
+
+
 
 }

@@ -51,5 +51,8 @@ public interface EmployeeRepository extends Repository<EmployeeEntity,Integer> {
      */
     @Query("select emp from EmployeeEntity emp where id = (select  max(id) from EmployeeEntity t1) ")
     public EmployeeEntity getEmployeeEntityById();
+
+    @Query("select emp from EmployeeEntity emp where  emp.name=?1 and emp.age=?2")
+    public List<EmployeeEntity> queryParam1(String name, Integer age);
 }
 
