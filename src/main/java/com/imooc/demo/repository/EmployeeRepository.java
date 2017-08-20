@@ -1,6 +1,7 @@
 package com.imooc.demo.repository;
 
 import com.imooc.demo.entity.EmployeeEntity;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.Repository;
 
 import java.util.List;
@@ -26,7 +27,7 @@ public interface EmployeeRepository extends Repository<EmployeeEntity,Integer> {
      * 在申明方法名的是时候一定要按照一定的规则
      *
      * @param name
-     * @return
+     * @return EmployeeEntity
      */
     public EmployeeEntity findByName(String name);
 
@@ -41,5 +42,14 @@ public interface EmployeeRepository extends Repository<EmployeeEntity,Integer> {
 
     //where name in (?,?...) and age<?
     public List<EmployeeEntity> findByNameInAndAgeLessThan(List<String> names, Integer age);
+
+
+    /**
+     * *****-----@Query注解的使用----*****
+     * @return EmployeeEntity
+     * 注意;在查询语句中的EmployeeEntity是类名，不是表名字
+     */
+    @Query("select emp from EmployeeEntity emp where id = (select  max(id) from EmployeeEntity t1) ")
+    public EmployeeEntity getEmployeeEntityById();
 }
 

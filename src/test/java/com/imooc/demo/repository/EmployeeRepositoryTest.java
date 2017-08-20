@@ -98,4 +98,17 @@ import java.util.List;
         }
     }
 
+    /**
+     * 通过注解@Query，解决repository方法命名规范问题
+     * function: 测试 getEmployeeEntityById
+     */
+    @Test
+    public void  testGetEmployeeEntityById() {
+        EmployeeEntity employee = employeeRepository.getEmployeeEntityById();
+        System.out.println("id: " + employee.getId() +
+                ",name " + employee.getName() +
+                ",age: " + employee.getAge());
+    }
+
+
 }
