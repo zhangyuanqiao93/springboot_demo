@@ -55,4 +55,19 @@ datasource:
     
 ###  java mail的坑
 
-javax.mail.AuthenticationFailedException: 550 User has no permission    
+javax.mail.AuthenticationFailedException: 550 User has no permission 
+
+
+
+
+------
+
+# Spring Data 
+
+## Spring Data 中的Repository
+
+  1.在repository的方法中使用，不需要遵循查询命名规则；
+  2.只需要将@Query注解注解在repository的方法撒花姑娘即可；
+  3.命名参数以及索引参数的使用
+  4.本地查询
+  

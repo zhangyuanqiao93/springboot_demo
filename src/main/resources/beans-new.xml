@@ -53,6 +53,7 @@
     后来经过一天的各种搜索引擎的搜索，查找，无果，最后把这个注释掉，测试OK。这个坑，慎入。-->
     <!--经过查阅相关的技术文档，首先了解到这个bean标签的作用是： 扫描指定的包中的类上的注解。
     可能是目前没有添加注解的原因，但是其实上一个项目已经添加了很多的注解。-->
-    <!--<context:component-scan base-package="com.imooc.demo"/>-->
+    <context:component-scan base-package="com.imooc.demo.service"/>
+    <!--*************扫描到包service下************-->
 
 </beans>

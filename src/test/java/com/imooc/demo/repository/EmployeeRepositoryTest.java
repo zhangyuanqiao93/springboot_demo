@@ -122,5 +122,71 @@ import java.util.List;
     }
 
 
+    //queryParam2
+    @Test
+    public void  testQueryParam2() {
+        List<EmployeeEntity> employeeEntities = employeeRepository.queryParam2("xx",23);
+        for (EmployeeEntity employee : employeeEntities) {
+            System.out.println("id: " + employee.getId() +
+                    ",name " + employee.getName() +
+                    ",age: " + employee.getAge());
+        }
+    }
 
+    //    queryLike1
+    @Test
+    public void  testQueryLike1() {
+        List<EmployeeEntity> employeeEntities = employeeRepository.queryLike1("test");
+        for (EmployeeEntity employee : employeeEntities) {
+            System.out.println("id: " + employee.getId() +
+                    ",name " + employee.getName() +
+                    ",age: " + employee.getAge());
+        }
+    }
+
+    //    queryLike2
+    @Test
+    public void  testQueryLike2() {
+        List<EmployeeEntity> employeeEntities = employeeRepository.queryLike2("test1");
+        for (EmployeeEntity employee : employeeEntities) {
+            System.out.println("id: " + employee.getId() +
+                    ",name " + employee.getName() +
+                    ",age: " + employee.getAge());
+        }
+    }
+
+    /**
+     * @Date;17/8/21
+     * grid();直接使用sql语句
+     *
+     * List<Map<String,Object>>
+     */
+/*
+    @Test
+    public void testGrid(){
+//        return null;
+    }
+*/
+
+    //getCount
+    @Test
+    public void testGetCount(){
+        long count = employeeRepository.getCount();
+        System.out.println("count: "+ count);
+    }
+
+
+    /**
+     * 根据id   update  age
+     */
+
+    /**
+     * 运行报错：update/delete query; nested exception is javax.persistence.TransactionRequiredException: Executing an update/delete query
+     * 错误解决方案:在@Modifying后面加@Transactional
+     */
+
+    @Test
+    public void testUpdateAgeById(){
+        employeeRepository.updateAgeById(1,12);
+    }
 }

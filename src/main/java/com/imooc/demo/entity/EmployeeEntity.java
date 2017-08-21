@@ -1,9 +1,6 @@
 package com.imooc.demo.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * Create By Bridge On 2017/8/18
@@ -13,6 +10,7 @@ import javax.persistence.Id;
 
 
 @Entity
+@Table(name = "test_employee")
 public class EmployeeEntity {
 
 
@@ -52,4 +50,12 @@ public class EmployeeEntity {
         this.age = age;
     }
 
+    @Override
+    public String toString() {
+        return "EmployeeEntity{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", age=" + age +
+                '}';
+    }
 }
