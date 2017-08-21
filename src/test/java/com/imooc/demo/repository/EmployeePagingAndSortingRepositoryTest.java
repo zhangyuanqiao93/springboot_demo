@@ -33,6 +33,11 @@ import org.springframework.data.domain.Sort;
         System.out.println("tearDown");
     }
 
+    /**
+     * Author:Bridge
+     * function： Spring Data的 分页和排序
+     *
+     */
     @Test
     public void getPage(){
 
