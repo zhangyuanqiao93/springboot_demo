@@ -17,6 +17,8 @@ spring:
       ddl-auto: validate
     show-sql: true
 
+# 对于thymeleaf模板进行配置
+# qq:spring.mail.host=smtp.qq.com spring.mail.password=QQ邮箱授权码
 # mail 配置
   mail:
     host: smtp.163.com
@@ -25,14 +27,22 @@ spring:
     properties: true
     default-encoding: utf-8
     port: 25
-
+  thymeleaf:
+    cache: false
+#    prefix: classpath:/templates/
+    #    suffix: .html
+    #    mode: HTML5
+    #    encoding: UTF-8
+    #    content-type: text/html
+    #    注释的部分是Thymeleaf默认的配置，如有其它需求可以自行更改
 # Mybatis 配置
 mybatis:
   type-aliases-package: com.imooc.demo.entity
   mapper-locations: clathpath:mapper/*.xml
 
 
-# qq:spring.mail.host=smtp.qq.com spring.mail.password=QQ邮箱授权码
+
+
 
 
 

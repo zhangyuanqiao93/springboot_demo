@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>ECharts</title>
+
+</head>
+<body>
+<script type="text/javascript" charset="UTF-8" src="../static/echarts.js"></script>
+<h1> Hello ECharts Demo</h1>
+<div id="main" style="width: 600px;height: 400px">
+<script type="text/javascript">
+    // 基于准备好的dom，初始化echarts实例
+    var myChart = echarts.init(document.getElementById('main'));
+
+    // 指定图表的配置项和数据
+    var option = {
+        title: {
+            text: 'ECharts Demo'
+        },
+        tooltip: {},
+        legend: {
+            data:['销量']
+        },
+        xAxis: {
+            data: function () {
+                var arr=[];
+                $.ajax({
+                    type:"post",
+                    async:false,//同步执行
+                    url:"/app/getAllECharts",
+                    data:{},
+                    dataType:"json",//返回数据格式类型
+                    success:function (json) {
+                        if (json){
+                            for (var i = 0; i < array.length; i++) {
+                                console.log(json[i].contexts);
+                                arr.push(json[i].user.name);
+                                var obj = array[i];
+
+                            }
+                        }
+                    },
+                    error:function (errorMsg) {
+                        alert("图标数据请求失败！请重试");
+                        myChart.hideLoading();
+                    }
+                });
+                return arr;
+            }
+        },
+        yAxis: {},
+        series: [{
+            name: '销量',
+            type: 'bar',
+            data: [5, 20, 36, 10, 10, 20]
+        }]
+    };
+    require.config({
+        paths:
+            {
+                echarts:'resources/static/echarts.js'
+            }
+    });
+
+    // 使用刚指定的配置项和数据显示图表。
+    myChart.setOption(option);
+</script>
+
+
+</div>
+</body>
+
+
+</html>
