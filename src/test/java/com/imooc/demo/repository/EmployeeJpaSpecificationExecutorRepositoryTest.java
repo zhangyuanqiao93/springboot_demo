@@ -69,8 +69,7 @@ public class EmployeeJpaSpecificationExecutorRepositoryTest {
                 //root  employee(  (age))
                 Path path = root.get("age");
                 //判断path是否小于50
-                Predicate pre = cb.gt(path,50);
-                return pre;
+                return cb.gt(path,50);
             }
         };
 

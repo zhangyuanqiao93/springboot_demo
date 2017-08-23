@@ -25,8 +25,8 @@ public class AliyunMessageUtil {
     private final static String domain = "dysmsapi.aliyuncs.com";
 
     // 此处需要替换成开发者自己的AK(在阿里云访问控制台寻找)
-    private final static String AccessKeyID  = "your AccessKeyID";
-    private final static String AccessKeySecret  = "your AccessKeySecret";
+    private final static String AccessKeyID  = "AccessKeyID";
+    private final static String AccessKeySecret  = "AccessKeySecret";//不要出现空格
 
 
     public static SendSmsResponse sendSmsResponse(Map<String,String> paramMap) throws ClientException {
@@ -62,5 +62,19 @@ public class AliyunMessageUtil {
             e.printStackTrace();
         }
         return sendSmsResponse;
+    }
+
+    /**
+     * 生成6位数随机码
+     * @param num
+     * @return
+     */
+    public static String createRandomNum(int num) {
+        String randomNumStr = "";
+        for(int i = 0; i < num;i ++){
+            int randomNum = (int)(Math.random() * 10);
+            randomNumStr += randomNum;
+        }
+        return randomNumStr;
     }
 }

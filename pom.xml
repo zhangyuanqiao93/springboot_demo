@@ -174,7 +174,13 @@
 			<scope>system</scope>
 			<systemPath>${project.basedir}/src/main/resources/lib/aliyun-sdk-mns-1.1.8.jar</systemPath>
 		</dependency>
-
+		<dependency>
+			<groupId>aliyun-message-gson</groupId>
+			<artifactId>aliyun-message-gson</artifactId>
+			<version>2.3.1</version>
+			<scope>system</scope>
+			<systemPath>${project.basedir}/src/main/resources/lib/gson-2.3.1.jar</systemPath>
+		</dependency>
 		<dependency>
 			<groupId>aliyun-java-sdk-dysmsapi</groupId>
 			<artifactId>aliyun-java-sdk-dysmsapi</artifactId>

@@ -9,9 +9,9 @@ import com.imooc.demo.entity.ResultEntity;
  */
 public class ResultUtil {
 
-    public static ResultEntity success(Object object){
+    public static ResultEntity<Object> success(Object object){
 
-        ResultEntity result = new ResultEntity();
+        ResultEntity<Object> result = new ResultEntity<>();
 
         result.setCoede(0);
         result.setMsg("成功");
@@ -19,7 +19,7 @@ public class ResultUtil {
         return result;
     }
 
-    public static ResultEntity success(){
+    public static ResultEntity<Object> success(){
         return success(null);//传入的对象是null
     }
 
