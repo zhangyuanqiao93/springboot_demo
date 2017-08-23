@@ -3,9 +3,9 @@ package com.imooc.demo.controller;
 import com.alibaba.dubbo.common.json.JSONArray;
 import com.alibaba.dubbo.common.json.JSONObject;
 import com.imooc.demo.entity.UserEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,7 +17,7 @@ import java.util.List;
  * Function:
  * Description:
  */
-@Controller//@RestController + @ResponseBody
+@RestController//@RestController + @ResponseBody
 public class UserController {
 
     /**
@@ -25,7 +25,7 @@ public class UserController {
      * @param request
      * @return
      */
-    @GetMapping(value = "/")
+    @GetMapping(value = "/e-charts")
     public String getAllApp(HttpServletRequest request){
         //request.setAttribute("appList",appManager.getAllApp());
 //        return "sys/app/list";
@@ -39,7 +39,7 @@ public class UserController {
      * @param response
      * @throws Exception
      */
-    @RequestMapping(value = "getAllECharts/")
+    @RequestMapping(value = "/getAllECharts")
     public void getAllECharts(HttpServletRequest request,
                               HttpServletResponse response) throws Exception {
         /*List list = new ArrayList();
@@ -60,12 +60,13 @@ public class UserController {
         }
         response.getWriter().print(jsons);*/
         JSONArray jsons = new JSONArray();
-        List<UserEntity> list = new ArrayList<>();
-        for (int j = 0; j < list.size(); j++) {
+        List<UserEntity> lists = new ArrayList<>();
+        for (UserEntity list : lists) {
             JSONObject jsonObject = new JSONObject();
-            jsonObject.put("user",list.get(j));
+            jsonObject.put("user", list);
             jsons.add(jsonObject);
-            
+
         }
+        response.getWriter().print(jsons);
     }
 }
