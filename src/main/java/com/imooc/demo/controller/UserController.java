@@ -3,9 +3,10 @@ package com.imooc.demo.controller;
 import com.alibaba.dubbo.common.json.JSONArray;
 import com.alibaba.dubbo.common.json.JSONObject;
 import com.imooc.demo.entity.UserEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,7 +18,7 @@ import java.util.List;
  * Function:
  * Description:
  */
-@RestController//@RestController + @ResponseBody
+@Controller
 public class UserController {
 
     /**
@@ -25,12 +26,15 @@ public class UserController {
      * @param request
      * @return
      */
-    @GetMapping(value = "/e-charts")
+    @GetMapping(value = "/ECharts")
     public String getAllApp(HttpServletRequest request){
-        //request.setAttribute("appList",appManager.getAllApp());
-//        return "sys/app/list";
+
+
         System.out.println("getAllApp");
         return "ECharts";
+        //引入模板成功，但是调试的时候不能通过测试，
+        // 报错：ECharts.js导入失败，
+        // 查阅相关技术文档提示位置错误，多次尝试无果。
     }
 
     /**
@@ -39,26 +43,9 @@ public class UserController {
      * @param response
      * @throws Exception
      */
-    @RequestMapping(value = "/getAllECharts")
+    @RequestMapping(value = "/getAllECharts",method = RequestMethod.GET)
     public void getAllECharts(HttpServletRequest request,
                               HttpServletResponse response) throws Exception {
-        /*List list = new ArrayList();
-        JSONArray jsons = new JSONArray();
-        for (int i = 0; i < 10; i++) {
-            UserEntity user = new UserEntity();
-            user.setName("name" + i);
-            user.setId(i);
-            list.add(user);
-        }
-
-
-        for (int j = 0; j < list.size(); j++) {
-
-            JSONObject jsonObject = new JSONObject();
-            jsonObject.put("user",list.get(j));
-            jsons.add(jsonObject);
-        }
-        response.getWriter().print(jsons);*/
         JSONArray jsons = new JSONArray();
         List<UserEntity> lists = new ArrayList<>();
         for (UserEntity list : lists) {
@@ -68,5 +55,6 @@ public class UserController {
 
         }
         response.getWriter().print(jsons);
+        System.out.println("response!");
     }
 }

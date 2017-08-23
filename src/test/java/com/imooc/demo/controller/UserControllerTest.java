@@ -26,9 +26,9 @@ public class UserControllerTest {
     @Test
     public void getAllApp() throws Exception {
 
-        mockMvc.perform(MockMvcRequestBuilders.get("/e-charts"))
+        mockMvc.perform(MockMvcRequestBuilders.get("/ECharts"))
                 .andExpect(MockMvcResultMatchers.status().isOk());
-        System.out.println("url: /e-charts");
+        System.out.println("url: /ECharts");
     }
 
     @Test

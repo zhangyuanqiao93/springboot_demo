@@ -3,14 +3,15 @@
 <head>
     <meta charset="UTF-8"/>
     <title>ECharts</title>
+    <script type="text/javascript" charset="UTF-8" src="echarts.js"></script>
 
 </head>
 <body>
-<script type="text/javascript" charset="UTF-8" src="../static/echarts.js"></script>
 <h1> Hello ECharts Demo</h1>
+
 <!--在模板中中获取不到一下内容，解决方案，一、用jsp形式实现，二、用java封装的ECharts实现-->
 <div id="main" style="width: 600px;height: 400px">
-<script type="text/javascript">
+    <script type="text/javascript">
     // 基于准备好的dom，初始化echarts实例
     var myChart = echarts.init(document.getElementById('main'));
 
@@ -27,16 +28,19 @@
             data: function () {
                 var arr=[];
                 $.ajax({
-                    type:"post",
+                    type:"POST",
                     async:false,//同步执行
-                    url:"/app/getAllECharts",
+                    url:"/getAllECharts",//设置为哪个URL
                     data:{},
                     dataType:"json",//返回数据格式类型
-                    success:function (json) {
-                        if (json){
-                            for (var i = 0; i < array.length; i++) {
-                                console.log(json[i].contexts);
-                                arr.push(json[i].user.name);
+                    success:function (result) {
+                        if (result){
+                            //初始化xAxis[0]的data
+                            option.xAxis[0].data = [];
+                            for (var i = 0; i < result.length; i++) {
+                                console.log(result[i].contexts);
+                                option.xAxis[0].data.push(result[i].name);
+                                //arr.push(result[i].user.name);
                                 var obj = array[i];
 
                             }
@@ -44,7 +48,7 @@
                     },
                     error:function (errorMsg) {
                         alert("图标数据请求失败！请重试");
-                        myChart.hideLoading();
+                        myChart.hideLoading(errorMsg);
                     }
                 });
                 return arr;
@@ -57,20 +61,17 @@
             data: [5, 20, 36, 10, 10, 20]
         }]
     };
-    require.config({
+/*    require.config({
         paths:
             {
                 echarts:'resources/static/echarts.js'
             }
-    });
+    });*/
 
     // 使用刚指定的配置项和数据显示图表。
     myChart.setOption(option);
 </script>
 
-
 </div>
 </body>
-
-
 </html>
