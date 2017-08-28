@@ -1,0 +1,13 @@
+{
+  "birthday": "1990-01-01",
+  "profession": [
+    "Computer Science","English Language"
+  ],
+  "car": null,
+  "school": "清华大学",
+  "name": "张丹",
+  "has_girlfriend": true,
+  "comment": "这是一个注解",
+  "house": null,
+  "age": 20
+}

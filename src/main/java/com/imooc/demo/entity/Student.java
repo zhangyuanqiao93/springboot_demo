@@ -1,12 +1,17 @@
 package com.imooc.demo.entity;
 
+import javax.persistence.Entity;
+import java.util.Arrays;
+
 /**
  * Create By Bridge On 2017/8/28
  * Function: 使用java bean的方式构建json对象
  * Description:
  */
-public class TinghuaStudent {
+@Entity
+public class Student {
 
+    //@SerializedName("NAME")
     private String name;
     private double age;
     private String school;
@@ -17,6 +22,42 @@ public class TinghuaStudent {
     private String[] profession;
     private String comment;
 
+    @Override
+    public String toString() {
+        return "Student{" +
+                "name='" + name + '\'' +
+                ", age=" + age +
+                ", school='" + school + '\'' +
+                ", has_girlfriend=" + has_girlfriend +
+                ", car=" + car +
+                ", house=" + house +
+                ", birthday='" + birthday + '\'' +
+                ", profession=" + Arrays.toString(profession) +
+                ", comment='" + comment + '\'' +
+                ", ignore='" + ignore + '\'' +
+                '}';
+    }
+//隐藏部分属性
+    //@Transient
+    /**
+     * transient关键字
+     * 1）一旦变量被transient修饰，变量将不再是对象持久化的一部分，该变量内容在序列化后无法获得访问。
+
+     * 2）transient关键字只能修饰变量，而不能修饰方法和类。注意，本地变量是不能被transient关键字修饰的。变量如果是用户自定义类变量，则该类需要实现Serializable接口。
+
+     * 3）被transient关键字修饰的变量不再能被序列化，一个静态变量不管是否被transient修饰，均不能被序列化。
+     *
+     * 传送门：http://www.importnew.com/21517.html
+     */
+    private transient String ignore;
+
+    public String getIgnore() {
+        return ignore;
+    }
+
+    public void setIgnore(String ignore) {
+        this.ignore = ignore;
+    }
 
     public String getName() {
         return name;

@@ -1,6 +1,6 @@
 package com.imooc.demo.json;
 
-import com.imooc.demo.entity.TinghuaStudent;
+import com.imooc.demo.entity.Student;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -15,8 +15,8 @@ import java.util.Map;
 public class JsonObjectSample {
 
     public static void main(String[] args) {
-        JSONObjectSample();
-        createJsonByMap();
+        //JSONObjectSample();
+        //createJsonByMap();
         createJsonByBean();
     }
 
@@ -80,18 +80,19 @@ public class JsonObjectSample {
      */
     private static void createJsonByBean(){
 
-        TinghuaStudent stu = new TinghuaStudent();
+        Student stu = new Student();
         stu.setName("张丹");
         stu.setAge(20);
         stu.setBirthday("1990-01-01");
         stu.setSchool("清华大学");
-        stu.setProfession(new String[] {"Computer Science","English Language"});
         stu.setCar(null);
         stu.setHouse(null);
         stu.setHas_girlfriend(true);
         stu.setComment("这是一个注解");
-
-        System.out.println("createJsonByBean: "+new JSONObject(stu));
+        stu.setProfession(new String[] {"A","B"});
+        System.out.println("stu::::"+ stu);
+        System.out.println("createJsonByBean: "+ new JSONObject(stu).toString());
+        //打印结果，profession为空
 
     }
 
