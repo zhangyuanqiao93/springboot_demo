@@ -36,17 +36,17 @@ public class MsgDemoController {
 
 
 
-    @RequestMapping(value = "/sendMsg",method = RequestMethod.GET)
+    @RequestMapping(value = "/sendMsg",method = RequestMethod.POST)
     public void sendMsg() throws com.aliyuncs.exceptions.ClientException {
 
-        String phoneNumber = "17777777777";
+        String phoneNumber = "***********";
         String randomNum  = AliyunMessageUtil.createRandomNum(6);//生成6位随机验证码
 
         String jsonContent = "{\"number\":\"" + randomNum + "\"}";
         Map<String,String> paramMap = new HashMap<>();
         paramMap.put("phoneNumber",phoneNumber);
         paramMap.put("msgSign","桥先森");
-        paramMap.put("templateCode","yourTemplateCode");
+        paramMap.put("templateCode","SMS_88370003");
         paramMap.put("jsonContent",jsonContent);
 
         SendSmsResponse sendSmsResponse = AliyunMessageUtil.sendSmsResponse(paramMap);

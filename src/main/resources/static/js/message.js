@@ -9,9 +9,10 @@ var wait = 120;//120秒后可以重新点击灰色按钮
 function getMsgNum(that) {
 
     var phoneNumber = $('#phone').val();
+    var httpurl = 'localhost:8082';
     console.log(phoneNumber);
     setButtonStatus(that); // 设置按钮倒计时
-    var object = {
+    var obj = {
         phoneNumber:phoneNumber
     };
     $.ajax({
@@ -25,7 +26,7 @@ function getMsgNum(that) {
             withCredentials: true
         },
         success: function (result) {
-            if(result.code == '200') {
+            if(result.code === 200) {
                 messageData = result.data;
             }else {
                 alert("错误码:" + data.code + "  错误信息:" + data.message);
@@ -41,7 +42,7 @@ function getMsgNum(that) {
 }
 
 function setButtonStatus(that) {
-    if (wait == 0) {
+    if (wait === 0) {
         that.removeAttribute("disabled");
         that.value="免费获取验证码";
         wait = 60;
@@ -59,6 +60,7 @@ function setButtonStatus(that) {
  * 注册按钮
  */
 function validateNum() {
+
     var data = {
         msgNum: inputMsgNum,
         tamp: messageData.tamp,
