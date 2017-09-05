@@ -38,9 +38,9 @@ import java.util.List;
         System.out.println(employeeRepository);//org.springframework.data.jpa.repository.support.SimpleJpaRepository@764cba
         EmployeeEntity employee  = employeeRepository.findByName("xx");
         //System.out.println(employee);
-        System.out.println("id: " +  employee.getId()+
-                ",name " +  employee.getName()+
-                ",age: " +  employee.getAge());
+//        System.out.println("id: " +  employee.getId()+
+//                ",name " +  employee.getName()+
+//                ",age: " +  employee.getAge());
     }
 
     @Test
