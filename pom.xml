@@ -214,9 +214,9 @@
 		<!--Maven的依赖-->
 		<plugins>
 			<plugin>
+				<!--打jar包-->
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-				<!--打jar包-->
 				<configuration>
 					<fork>true</fork>
 				</configuration>

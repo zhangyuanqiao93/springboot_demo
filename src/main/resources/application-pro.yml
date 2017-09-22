@@ -4,4 +4,7 @@ server:
 girl:
   cupSize: D
   age: 22
+  name: bridge
+
+debug: true
 #content: "cupSize: ${cupSize},age: ${age}"
